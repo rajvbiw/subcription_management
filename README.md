@@ -328,12 +328,6 @@ kubectl get pods -n subscription-man
 
 ---
 
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
 <p align="center">
   Built with ❤️ as part of the <strong>15 Projects in 30 Days</strong> challenge — Project #4
 </p>

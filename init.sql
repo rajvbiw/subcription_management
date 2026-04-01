@@ -1,0 +1,31 @@
+-- init.sql
+CREATE TABLE IF NOT EXISTS plans (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+INSERT INTO plans (name, price) VALUES
+('Free', 0.00),
+('Pro', 29.99),
+('Enterprise', 99.99)
+ON CONFLICT (id) DO NOTHING;
+
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  role VARCHAR(50) DEFAULT 'user',
+  plan_id INTEGER REFERENCES plans(id) DEFAULT 1,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS usage_logs (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  metric_type VARCHAR(50) NOT NULL,
+  value INTEGER NOT NULL DEFAULT 0,
+  recorded_date DATE NOT NULL DEFAULT CURRENT_DATE,
+  UNIQUE(user_id, metric_type, recorded_date)
+);

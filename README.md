@@ -112,7 +112,7 @@ Subscription_man/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/rajvbiw/Subscription_man.git
+git clone https://github.com/rajvbiw/subcription_management.git
 cd Subscription_man
 ```
 
